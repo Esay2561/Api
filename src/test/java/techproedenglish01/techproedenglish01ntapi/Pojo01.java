@@ -4,10 +4,13 @@ import org.junit.Test;
 import org.testng.asserts.SoftAssert;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import techproedenglish01.techproedenglish01api.Booking;
@@ -36,22 +39,21 @@ public class Pojo01 extends TestBase {
 		//Status Code Assertion
 		response.then().assertThat().statusCode(200);	
 						//Soft Assert the response body	
-		//1)You can use JsonPath. Create JsonPath Object by using response.
+		//  You can use JsonPath. Create JsonPath Object by using response.
 		//  JsonPath json = response.jsonPath();
-		//2)You can use De-Serialization to create a Java Object from response body
+
 		
-        @SuppressWarnings("unchecked")
-		Map<String, Object> map = response.as(HashMap.class);
-        System.out.println(map);
+        JsonPath json = response.jsonPath();
 		
 		SoftAssert softAssert = new SoftAssert();
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getFirstname()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getLastname()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getTotalprice().toString()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getDepositpaid().toString()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getBookingdates().getCheckin()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getBookingdates().getCheckout()));
-		softAssert.assertTrue(map.get("booking").toString().contains(booking.getAdditionalneeds()));
+		softAssert.assertEquals(json.get("booking.firstname"),booking.getFirstname());
+		softAssert.assertEquals(json.get("booking.lastname"),booking.getLastname());
+		softAssert.assertEquals(json.get("booking.totalprice"),booking.getTotalprice());
+		softAssert.assertEquals(json.get("booking.depositpaid"),booking.getDepositpaid());
+		softAssert.assertEquals(json.get("booking.bookingdates.checkin"),bookingdates.getCheckin());
+		softAssert.assertEquals(json.get("booking.bookingdates.checkout"),bookingdates.getCheckout());
+		softAssert.assertEquals(json.get("booking.additionalneeds"),booking.getAdditionalneeds());
+
 		softAssert.assertAll();
 
 	}
