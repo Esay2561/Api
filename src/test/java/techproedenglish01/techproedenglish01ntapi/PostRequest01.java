@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import techproedenglish01.techproedenglish01api.TestBase;
 
@@ -55,6 +56,7 @@ public class PostRequest01 extends TestBase {
 		
 		
 		Response response = given().
+				               contentType(ContentType.JSON).
 				               spec(spec02).
 				               auth().
 				               basic("admin", "password123").

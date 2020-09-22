@@ -45,6 +45,7 @@ public class Pojo02 extends TestBase {
 		
 		response.then().assertThat().statusCode(200).contentType(ContentType.JSON);
 		
+		@SuppressWarnings("unchecked")
 		Map<String, String> map = response.as(HashMap.class);
 		
 		SoftAssert softAssert = new SoftAssert();

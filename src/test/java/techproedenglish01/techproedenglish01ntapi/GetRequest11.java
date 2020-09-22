@@ -26,6 +26,7 @@ public class GetRequest11 extends TestBase {
 				               get("/{id}");
 		response.prettyPrint();
 		
+		@SuppressWarnings("unchecked")
 		HashMap<String,Object> map = response.as(HashMap.class);//De-Serialization
 		
 		System.out.println(map);

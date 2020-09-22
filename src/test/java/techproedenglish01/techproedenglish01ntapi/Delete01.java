@@ -8,7 +8,7 @@ import techproedenglish01.techproedenglish01api.TestBase;
 public class Delete01 extends TestBase {
 	
 	/*
-	  For Delete Request we nedd just Endpoint like Get Request
+	  For Delete Request we need just Endpoint like Get Request
 	*/
 	
 	@Test

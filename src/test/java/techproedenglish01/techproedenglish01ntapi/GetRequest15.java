@@ -39,6 +39,7 @@ public class GetRequest15 extends TestBase {
 				               get("/{bookingid}");
 		response.prettyPrint();
 		
+		@SuppressWarnings("unchecked")
 		HashMap<String, Object> map = response.as(HashMap.class);
 		System.out.println(map);
 		

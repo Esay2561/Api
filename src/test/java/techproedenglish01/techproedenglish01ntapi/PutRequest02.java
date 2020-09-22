@@ -2,13 +2,9 @@ package techproedenglish01.techproedenglish01ntapi;
 
 import static io.restassured.RestAssured.given;
 import java.util.HashMap;
-import java.util.Map;
-import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
-
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import techproedenglish01.techproedenglish01api.TestBase;
 
@@ -50,6 +46,7 @@ public class PutRequest02 extends TestBase {
 		response.then().assertThat().statusCode(200);
 		
 		//For softt assertion you need to decide to use JsonPath or De-Serialization
+		@SuppressWarnings("unchecked")
 		HashMap<String, String> map = response.as(HashMap.class);
 		
 		SoftAssert softAssert = new SoftAssert();
