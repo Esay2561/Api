@@ -61,6 +61,7 @@ public class GetRequest01 {
 		System.out.println(response.getHeader("Server"));
 		System.out.println(response.getHeader("Content-type"));//1.way to print content type on the console
 		System.out.println(response.getContentType());//2.way to print content type on the console
+
 	}
 	
 	

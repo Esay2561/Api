@@ -9,6 +9,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import techproedenglish01.techproedenglish01api.TestBase;
 
@@ -48,7 +49,7 @@ public class Delete02 extends TestBase {
 		expectedMap.put("status", "success");
 		expectedMap.put("message", "Successfully! Record has been deleted");
 		System.out.println(expectedMap);
-		
+
 		response.
 		     then().
 		     assertThat().

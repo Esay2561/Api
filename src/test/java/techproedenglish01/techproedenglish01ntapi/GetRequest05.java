@@ -35,6 +35,8 @@ public class GetRequest05 extends TestBase {
 		
 		response.prettyPrint();
 		
+		System.out.println(response.getHeaders());
+		
 		response.
 		   then().
 		   assertThat().
