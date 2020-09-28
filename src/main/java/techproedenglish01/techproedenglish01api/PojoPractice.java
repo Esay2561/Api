@@ -42,5 +42,19 @@ public class PojoPractice {
 	public void setProfileImage(String profileImage) {
 	this.profileImage = profileImage;
 	}
+	public PojoPractice(String employeeName, String employeeSalary, String employeeAge, String profileImage) {
+		this.employeeName = employeeName;
+		this.employeeSalary = employeeSalary;
+		this.employeeAge = employeeAge;
+		this.profileImage = profileImage;
+	}
+	public PojoPractice() {
+
+	}
+	@Override
+	public String toString() {
+		return "PojoPractice [employeeName=" + employeeName + ", employeeSalary=" + employeeSalary + ", employeeAge="
+				+ employeeAge + ", profileImage=" + profileImage + "]";
+	}
 
 }
