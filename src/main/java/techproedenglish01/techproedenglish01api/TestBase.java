@@ -39,16 +39,12 @@ public class TestBase {
 				            setBaseUri("http://dummy.restapiexample.com/api/v1").
 				            build();
 	}
+	
 	@Before
 	public void setUp05() {
 		spec05 = new RequestSpecBuilder().
 				            setBaseUri("http://api.openweathermap.org").
 				            build();
 	}
-	
-	
-	
-	
-	
-	
+
 }
