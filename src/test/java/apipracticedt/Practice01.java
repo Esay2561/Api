@@ -62,18 +62,16 @@ public class Practice01 extends TestBaseDt{
 		assertFalse(response.asString().contains(expectedData.get("wrongText")));
 		
 		//5. Start Assertion (Soft Assertion)
+		SoftAssert softAssert = new SoftAssert();
 		
+		softAssert.assertEquals(response.getHeader("Server"), expectedData.get("Server"));
+		softAssert.assertEquals(response.getHeader("Content-Type"), expectedData.get("Content-Type"));
+		softAssert.assertEquals(response.getHeader("Via"), expectedData.get("Via"));
 		
+		softAssert.assertTrue(response.asString().contains(expectedData.get("trueText")));
+		softAssert.assertFalse(response.asString().contains(expectedData.get("wrongText")));
 		
+		softAssert.assertAll();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

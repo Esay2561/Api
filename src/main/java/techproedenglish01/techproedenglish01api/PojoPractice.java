@@ -18,6 +18,22 @@ public class PojoPractice {
 	@Expose
 	private String profileImage;
 	
+	private String status;
+	
+	private String message;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public String getEmployeeName() {
 	return employeeName;
 	}
