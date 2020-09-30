@@ -51,7 +51,7 @@ public class Practice07 extends TestBase {
 				          "polygons", "polygons").
 		       queryParam("appid", "2cb6803f295233aa579843d9e45599f2");
 		
-		double coordinates[][][] = { { {-121.1958,37.6683}, {-121.1779,37.6687}, {-121.1773,37.6792}, {-121.1958,37.6792}, {-121.1958,37.6683} } }; 
+		float coordinates[][][] = { { {-121.1958f,37.6683f}, {-121.1779f,37.6687f}, {-121.1773f,37.6792f}, {-121.1958f,37.6792f}, {-121.1958f,37.6683f} } }; 
 
 		Map<String,Object> geometry = new HashMap<>();
 		geometry.put("type", "Polygon");
@@ -64,7 +64,7 @@ public class Practice07 extends TestBase {
 		geo_json.put("properties", properties);
 		geo_json.put("geometry", geometry);
 		
-		double center[] = {-121.1867,37.67385};
+		float center[] = {-121.1867f,37.67385f};
 		
 		Map<String, Object> ReqBodyMap = new HashMap<>();
 		ReqBodyMap.put("name", "Polygon Sample");
@@ -80,13 +80,13 @@ public class Practice07 extends TestBase {
 		    then().
 		    assertThat().
 		    statusCode(201).
-		    body("geo_json.geometry.coordinates[0][0][0]", equalTo((float)coordinates[0][0][0]),
+		    body("geo_json.geometry.coordinates[0][0][0]", equalTo(coordinates[0][0][0]),
 		    	 "geo_json.geometry.type", equalTo(geometry.get("type")),
 		    	 "geo_json.type", equalTo(geo_json.get("type")),
 		    	 "geo_json.properties",equalTo(properties),
 		    	 "name", equalTo(ReqBodyMap.get("name")),
 		    	 "area", equalTo(ReqBodyMap.get("area")),
-		    	 "center[0]", equalTo((float)center[0]));
+		    	 "center[0]", equalTo(center[0]));
 
 	}
 
