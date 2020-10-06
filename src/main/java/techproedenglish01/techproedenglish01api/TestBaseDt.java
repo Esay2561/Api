@@ -11,6 +11,7 @@ public class TestBaseDt {
 	protected RequestSpecification spec02;
 	protected RequestSpecification spec03;
 	protected RequestSpecification spec04;
+	protected RequestSpecification spec05;
 
 	
 	@Before
@@ -38,6 +39,12 @@ public class TestBaseDt {
 	public void setUp04() {
 		spec04 = new RequestSpecBuilder().
 				             setBaseUri("http://dummy.restapiexample.com/api/v1").
+				             build();
+	}
+	@Before
+	public void setUp05() {
+		spec05 = new RequestSpecBuilder().
+				             setBaseUri("http://api.openweathermap.org").
 				             build();
 	}
 	

@@ -1,17 +1,12 @@
 package apipracticent;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.Matchers.*;
-import org.json.JSONObject;
 import org.junit.Test;
-
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-
-import static io.restassured.RestAssured.*;
 import techproedenglish01.techproedenglish01api.TestBase;
 
 public class Practice07 extends TestBase {
