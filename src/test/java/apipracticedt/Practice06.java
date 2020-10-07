@@ -1,6 +1,17 @@
 package apipracticedt;
 
-public class Practice06 {
+import java.util.HashMap;
+import java.util.Map;
+import static io.restassured.RestAssured.*;
+
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import techproedenglish01.techproedenglish01api.TestBaseDt;
+
+public class Practice06 extends TestBaseDt {
 	/*
 	 1)Create base url in TestBase Class for "http://api.agromonitoring.com"
 	 2)Set the URL to "http://api.agromonitoring.com/agro/1.0/polygons?appid=2cb6803f295233aa579843d9e45599f2"
@@ -29,4 +40,48 @@ public class Practice06 {
 	 5)Assert Status Code (201) and Response Body details by using body() method  
 	 6)Assert Response Body details by using Soft Assert                   
 	*/
+	@Test
+	public void postPractice() {
+		//Set endpoint
+		spec06.pathParams("agro", "agro",
+				          "id",1.0,
+				          "polygons", "polygons").
+		       queryParam("appid", "2cb6803f295233aa579843d9e45599f2");
+		
+		//Create Request Body
+		float coordinates[][][] = { { {-121.1958f,37.6683f}, {-121.1779f,37.6687f}, {-121.1773f,37.6792f}, {-121.1958f,37.6792f}, {-121.1958f,37.6683f} } };
+		
+		Map<String, Object> geometry = new HashMap<>();
+		geometry.put("type", "Polygon");
+		geometry.put("coordinates", coordinates);
+		
+		Map<String, String> properties = new HashMap<>();
+		
+		Map<String, Object> geo_json = new HashMap<>();
+		geo_json.put("type", "Feature");
+		geo_json.put("properties", properties);
+		geo_json.put("geometry", geometry);
+		
+		Map<String, Object> reqBody = new HashMap<>();
+		reqBody.put("name", "Polygon Sample");
+		reqBody.put("geo_json", geo_json);
+		
+		//Send POST Request
+		Response response = given().
+				               contentType(ContentType.JSON).
+				               spec(spec06).
+				               body(reqBody).
+				            when().
+				               post("/{agro}/{id}/{polygons}");
+		response.prettyPrint();
+		
+		//Hard Assertion with body()
+		response.
+		     then().
+		     assertThat().
+		     statusCode(201).
+		     contentType(ContentType.JSON).
+		     body("geo_json.geometry.coordinates[0][0][0]", Matchers.equalTo(coordinates[0][0][0]));
+	}
+
 }

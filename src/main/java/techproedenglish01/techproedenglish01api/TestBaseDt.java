@@ -12,6 +12,7 @@ public class TestBaseDt {
 	protected RequestSpecification spec03;
 	protected RequestSpecification spec04;
 	protected RequestSpecification spec05;
+	protected RequestSpecification spec06;
 
 	
 	@Before
@@ -47,6 +48,11 @@ public class TestBaseDt {
 				             setBaseUri("http://api.openweathermap.org").
 				             build();
 	}
+	@Before
+	public void setUp06() {
+		spec06 = new RequestSpecBuilder().
+				             setBaseUri("http://api.agromonitoring.com").
+				             build();
+	}
 	
-
 }

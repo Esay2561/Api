@@ -58,7 +58,7 @@ public class Practice05 extends TestBase {
 		Response response = given().
 				                contentType(ContentType.JSON).
 				                spec(spec04).
-				                body(putReqBody).
+				                body(putReqBody.toString()).
 				            when().
 				                put("/{update}/{id}");
 		response.prettyPrint();
