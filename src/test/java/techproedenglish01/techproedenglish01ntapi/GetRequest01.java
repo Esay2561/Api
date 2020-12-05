@@ -63,8 +63,8 @@ public class GetRequest01 {
 	@Test
 	public void get02() {
 		//1.Set the URL
-				//String url = "https://restful-booker.herokuapp.com/booking/1001";
-				String url = "http://api.openweathermap.org/data/2.5/weather?q=Zamazingo&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
+				String url = "https://restful-booker.herokuapp.com/booking/1001";
+				//String url = "http://api.openweathermap.org/data/2.5/weather?q=Zamazingo&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
 		
 		//2.Set the expected data
 				//We will learn it later
