@@ -27,8 +27,8 @@ public class GetRequest02 {
 	public void get01() {
 		
 		//1.Set the URL
-			String url = "https://restful-booker.herokuapp.com/booking/1001";
-			//String url = "http://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
+			//String url = "https://restful-booker.herokuapp.com/booking/1001";
+			String url = "http://api.openweathermap.org/data/2.5/weather?q=Zamazingo&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
 			
 		//2.Set the expected data
 			//We will learn it later
@@ -61,7 +61,7 @@ public class GetRequest02 {
 		
 			//When you use assertTrue(), put a boolean as parameter.If the boolean is true your test will pass
             //otherwise it will fail
-			assertTrue(response.asString().contains("Not Found"));
+			assertTrue(response.asString().contains("not found"));
 			
 			//When you use assertFalse(), put a boolean as parameter.If the boolean is false your test will pass
             //otherwise it will fail
@@ -75,7 +75,7 @@ public class GetRequest02 {
 			//For negative scenarios no need to assert content type
 			//softAssert.assertEquals(response.getContentType(), "application/json");
 			softAssert.assertEquals(response.getStatusLine(), "HTTP/1.1 404 Not Found");
-			softAssert.assertTrue(response.asString().contains("Not Found"));
+			softAssert.assertTrue(response.asString().contains("not found"));
 			softAssert.assertFalse(response.asString().contains("TechProEd"));
 					
 			softAssert.assertAll();
