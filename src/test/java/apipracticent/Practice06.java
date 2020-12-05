@@ -17,7 +17,7 @@ public class Practice06 extends TestBase{
 	
 	/*
 	 1)Create base url in TestBase Class for "http://api.openweathermap.org"
-	 2)Set the URL to "http://api.openweathermap.org/data/2.5/weather?q=Istanbul&&appid="2cb6803f295233aa579843d9e45599f2"
+	 2)Set the URL to "http://api.openweathermap.org/data/2.5/weather?q=Istanbul&&appid="6eaa1af5bb0846c4456dbf0a4849cb73"
 	   by using pathParams() and queryParams() methods
 	 3)Use JSONObject Class or MAP to store expected values
 	   Expected Values are: "coord.lon" ==> 28.98f   
@@ -30,7 +30,7 @@ public class Practice06 extends TestBase{
 	                        "sys.country" ==> "TR"
 	                        "timezone" ==> 10800
 	                        "name" ==> "Istanbul"
-	 4)Create GET Request to "http://api.openweathermap.org/data/2.5/weather?q=Istanbul&&appid="2cb6803f295233aa579843d9e45599f2"
+	 4)Create GET Request to "http://api.openweathermap.org/data/2.5/weather?q=Istanbul&&appid="6eaa1af5bb0846c4456dbf0a4849cb73"
 	   Print the response body on the console
 	 5)Assert Status Code and Response Body details by using body() method
 	 6)Assert Response Body details by using assertEquals() method    
@@ -48,7 +48,7 @@ public class Practice06 extends TestBase{
 				          "id", 2.5,
 				          "weather", "weather").
 		       queryParams("q", "Istanbul",
-		    		       "appid","2cb6803f295233aa579843d9e45599f2");
+		    		       "appid","6eaa1af5bb0846c4456dbf0a4849cb73");
 		
 	   //To store expected values we have 3 main options: a)JSONObject Class b)Map or List of Maps c)Pojo Class
 	   //3)Use JSONObject Class or MAP to store expected values

@@ -3,11 +3,14 @@ package apipracticedt;
 import java.util.HashMap;
 import java.util.Map;
 import static io.restassured.RestAssured.*;
+import static org.junit.Assert.assertEquals;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.testng.asserts.SoftAssert;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import techproedenglish01.techproedenglish01api.TestBaseDt;
 
@@ -66,6 +69,10 @@ public class Practice06 extends TestBaseDt {
 		reqBody.put("name", "Polygon Sample");
 		reqBody.put("geo_json", geo_json);
 		
+		float center[] = {-121.1867f,37.67385f};
+		
+		float area = 190.9484f;
+		
 		//Send POST Request
 		Response response = given().
 				               contentType(ContentType.JSON).
@@ -81,7 +88,47 @@ public class Practice06 extends TestBaseDt {
 		     assertThat().
 		     statusCode(201).
 		     contentType(ContentType.JSON).
-		     body("geo_json.geometry.coordinates[0][0][0]", Matchers.equalTo(coordinates[0][0][0]));
+		     body("geo_json.geometry.coordinates[0][0][0]", Matchers.equalTo(coordinates[0][0][0]),
+		    	  "geo_json.geometry.coordinates[0][0][1]", Matchers.equalTo(coordinates[0][0][1]),
+		    	  "geo_json.type", Matchers.equalTo(geo_json.get("type")),
+		    	  "geo_json.properties", Matchers.equalTo(properties),
+		    	  "geo_json.geometry.type", Matchers.equalTo(geometry.get("type")),
+		    	  "name", Matchers.equalTo(reqBody.get("name")),
+		    	  "center[0]", Matchers.equalTo(center[0]),
+		    	  "center[1]", Matchers.equalTo(center[1]),
+		    	  "area", Matchers.equalTo(area));
+		
+		//Hard Assertion with assertEquals(), assertTrue(), assertFalse()
+		//1)JsonPath   2)De-Serialization ==> a)GSON  b)ObjectMapper
+		JsonPath json = response.jsonPath();
+		
+		assertEquals(coordinates[0][0][0], json.get("geo_json.geometry.coordinates[0][0][0]"));
+		assertEquals(coordinates[0][0][1], json.get("geo_json.geometry.coordinates[0][0][1]"));
+		assertEquals(geo_json.get("type"), json.get("geo_json.type"));
+		assertEquals(properties, json.get("geo_json.properties"));
+		assertEquals(geometry.get("type"), json.get("geo_json.geometry.type"));
+		assertEquals(reqBody.get("name"), json.get("name"));
+		assertEquals(center[0], json.get("center[0]"));
+		assertEquals(center[1], json.get("center[1]"));
+		assertEquals(area, json.get("area"));
+		
+		
+		//Soft Assertion
+		//1)JsonPath   2)De-Serialization ==> a)GSON  b)ObjectMapper
+		SoftAssert softAssert = new SoftAssert();
+		
+		softAssert.assertEquals(json.get("geo_json.geometry.coordinates[0][0][0]"), coordinates[0][0][0]);
+		softAssert.assertEquals(json.get("geo_json.geometry.coordinates[0][0][1]"), coordinates[0][0][1]);
+	    softAssert.assertEquals(json.get("geo_json.type"), geo_json.get("type"));
+	    softAssert.assertEquals(json.get("geo_json.properties"), properties);
+	    softAssert.assertEquals(json.get("geo_json.geometry.type"), geometry.get("type"));
+	    softAssert.assertEquals(json.get("name"), reqBody.get("name"));
+	    softAssert.assertEquals(json.get("center[0]"), center[0]);
+	    softAssert.assertEquals(json.get("center[1]"), center[1]);
+	    softAssert.assertEquals(json.get("area"), area);
+
+		softAssert.assertAll();
+		
 	}
 
 }

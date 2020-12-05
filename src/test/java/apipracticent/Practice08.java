@@ -6,6 +6,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -52,7 +53,8 @@ public class Practice08 extends TestBase {
 				          "stations", "stations").
 		      queryParam("appid", "2cb6803f295233aa579843d9e45599f2");
 		
-		Map<String, Object> postReqBody = new HashMap<>(); 
+		//Map<String, Object> postReqBody = new HashMap<>(); 
+		JSONObject postReqBody = new JSONObject();
 		postReqBody.put("external_id", "SF_TEST001");
 		postReqBody.put("name", "San Francisco Test Station");
 		postReqBody.put("latitude", 37.76f);
@@ -68,7 +70,7 @@ public class Practice08 extends TestBase {
 		Response response = given().
 				              contentType(ContentType.JSON).
 				              spec(spec05).
-				              body(postReqBody).
+				              body(postReqBody.toString()).
 				           when().
 				              post("/{data}/{id}/{stations}");
 		response.prettyPrint();
