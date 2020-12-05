@@ -13,22 +13,22 @@ import static io.restassured.RestAssured.*;
 
 public class GetRequest02 {
 	
-	/*
-	 When I send a GET request to REST API URL 
-	 https://restful-booker.herokuapp.com/booking/1001   
-     Then HTTP Status Code should be 404
-     HTTP Status code should be 404
-	 And  Status Line should be HTTP/1.1 404 Not Found
-     And response body contains "Not Found"
-     And response body does not contain "TechProEd" 
-	*/
+									/*
+									 When I send a GET request to REST API URL 
+									 https://restful-booker.herokuapp.com/booking/1001   
+								     Then HTTP Status Code should be 404
+								     HTTP Status code should be 404
+									 And  Status Line should be HTTP/1.1 404 Not Found
+								     And response body contains "Not Found"
+								     And response body does not contain "TechProEd" 
+									*/
 	
 	@Test
 	public void get01() {
 		
 		//1.Set the URL
-			//String url = "https://restful-booker.herokuapp.com/booking/1001";
-			String url = "http://api.openweathermap.org/data/2.5/weather?q=Zamazingo&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
+			String url = "https://restful-booker.herokuapp.com/booking/1001";
+			//String url = "http://api.openweathermap.org/data/2.5/weather?q=Zamazingo&appid=6eaa1af5bb0846c4456dbf0a4849cb73";
 			
 		//2.Set the expected data
 			//We will learn it later
@@ -61,7 +61,7 @@ public class GetRequest02 {
 		
 			//When you use assertTrue(), put a boolean as parameter.If the boolean is true your test will pass
             //otherwise it will fail
-			assertTrue(response.asString().contains("not found"));
+			assertTrue(response.asString().contains("Not Found"));
 			
 			//When you use assertFalse(), put a boolean as parameter.If the boolean is false your test will pass
             //otherwise it will fail
@@ -75,7 +75,7 @@ public class GetRequest02 {
 			//For negative scenarios no need to assert content type
 			//softAssert.assertEquals(response.getContentType(), "application/json");
 			softAssert.assertEquals(response.getStatusLine(), "HTTP/1.1 404 Not Found");
-			softAssert.assertTrue(response.asString().contains("not found"));
+			softAssert.assertTrue(response.asString().contains("Not Found"));
 			softAssert.assertFalse(response.asString().contains("TechProEd"));
 					
 			softAssert.assertAll();
